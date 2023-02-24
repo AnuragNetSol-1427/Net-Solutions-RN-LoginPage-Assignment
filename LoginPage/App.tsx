@@ -1,118 +1,178 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
+  TextInput,
   View,
+  Image,
+  Pressable,
+  KeyboardAvoidingView,
+  Alert
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+        // <KeyboardAvoidingView>
+    <View style={styles.parentContainer}>
+        <Text style={styles.loginHeading}>Login</Text>
+        <View style={styles.loginTaglineContainer}>
+            <Text style={styles.tagline}>
+              By Signing in you are agreeging with our <Text style={styles.tmcColor}>Terms and Privacy Policy</Text>
+            </Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        <>
+          <View style={styles.inputView}>
+            <Image style={styles.emailImg} source={require('./assets/email.png')} />
+            <TextInput style={styles.textinput} placeholder='Email' placeholderTextColor={'black'} />
+          </View>
+          <View style={styles.inputView}>
+            <Image style={styles.emailImg} source={require('./assets/password.png')} />
+            <TextInput style={styles.textinput} placeholder='Password' placeholderTextColor={'black'} />
+          </View>
+          <Pressable onPress={()=>{Alert.alert("Forgot Password Screen")}} style={styles.forgotPwdView}>
+            <Text style={styles.forgotText}>Forgot Password</Text>
+          </Pressable>
+      </>
+      <Pressable onPress={()=>{Alert.alert("Submitted Successfully")}} style={styles.submitBtn}>
+        <Text style={styles.submitText}>Submit</Text>
+      </Pressable>
+
+      <View style={styles.socialConnectionDiv}>
+            <Text style={styles.socialConnectionText}>
+             or connect with
+             </Text>
+        </View>
+
+        <View style={styles.socialNetworkView}>
+            <Image source={require('./assets/fb.png')} />
+            <Image source={require('./assets/twitter.png')} />
+            <Image source={require('./assets/pinterest.png')} />
+            <Image source={require('./assets/linkedin.png')} />
+        </View>
+
+      <View style={styles.loginPageImg}>
+        <Image source={require('./assets/loginPageImage.png')} />
+      </View>
+
+
+
+      </View>
+
+      
+      
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  parentContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    // backgroundColor: 'grey',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  loginHeading: {
+    fontSize: 35,
+    color: 'black',
+    marginTop: '10%',
+    // backgroundColor: 'red',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  loginTaglineContainer: {
+    // backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: '60%',
+    marginTop: '3%'
   },
-  highlight: {
-    fontWeight: '700',
+  tagline: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
+  tmcColor: {
+    color: 'skyblue',
+  },
+  inputView: {
+    // flex: 1,
+    marginTop: '2%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'red',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    width: '80%',
+    // height: '10%',
+  },
+  emailImg: {
+    width: '10%',
+    height: '10%',
+    backgroundColor: 'white',
+    padding: '7%',
+  },
+  textinput: {
+    backgroundColor: 'white',
+    flex: 1,
+    height: '80%',
+  },
+  forgotPwdView: {
+    // backgroundColor: 'orange',
+    width: '80%',
+    height: '3%',
+    marginTop: '2%',
+    alignItems: 'flex-end',
+  }, 
+  forgotText: {
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // marginBottom: '3%',
+  },
+  submitBtn: {
+    marginTop: '3%',
+    backgroundColor: 'skyblue',
+    width: '60%',
+    // height: '3%',
+    alignItems: 'center',
+    borderRadius: 10,
+    padding: 5,
+  },
+  submitText: {
+    fontSize: 20,
+    fontWeight: 500,
+  },
+  socialConnectionDiv: {
+    // backgroundColor: 'red',
+    marginTop: '1%',
+  },
+  socialConnectionText: {
+    fontSize: 15,
+  },
+  socialNetworkView: {
+    // backgroundColor: 'red',
+    flexDirection: 'row',
+    width: '55%',
+    // height: '80%',
+    justifyContent: 'space-between',
+    // marginTop: '1%'
+  },
+  socialImg: {
+    // width: '100%',
+    // height: '50%',
+  },
+  loginPageImg: {
+    // flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default App;
